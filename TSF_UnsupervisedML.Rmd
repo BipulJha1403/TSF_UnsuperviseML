@@ -1,6 +1,6 @@
 ---
 title: "Unsupervised Machine Learning"
-subtitle: "The Spark FOundation"
+subtitle: "The Spark Foundation"
 author: "Bipul"
 output: html_document
 ---
@@ -66,7 +66,7 @@ iris_new$Petal.Width<- newfun(iris_new$Petal.Width)
 head(iris_new)
 ```
 
-## **3. CLustering the Dataset**
+## **3. Clustering the Dataset**
 
 This is a dataset in which we know that 3 centers are going to be appropriate for prediction.  
 The R documentation tells us that the **k-means** method **"aims to partition the points into k groups such that the sum of squares from points to the assigned cluster centres is minimized."**  
@@ -109,12 +109,12 @@ plot(iris$Sepal.Length, iris$Sepal.Width, col = iris$Species,  xlab = "Sepal Len
 ```
 
 
-We now make a plot for **Sepal.Width** and **Sepal.Length** for the **original** and the **kmeans clustering** dataset to see how they compare.
+We now make a plot for **Petal length** and **Petal Width** for the **original** and the **kmeans clustering** dataset to see how they compare.
 
 ```{r}
 par(mfrow = c(1,2), mar = c(5, 4, 2, 2))
-plot(iris$Sepal.Width, iris$Sepal.Length, col = result$cluster, xlab = "Sepal Width", ylab = "Sepal Length", main = "Width VS Length(K-means)", pch = 3)
-plot(iris$Sepal.Width, iris$Sepal.Length, col = iris$Species,  xlab = "Sepal Width", ylab = "Sepal Length", main = "Width VS Length(original)", pch = 9)
+plot(iris$Petal.Length, iris$Petal.Width , col = result$cluster, xlab = "Petal Length", ylab = "Petal Width", main = "Width VS Length(K-means)", pch = 3)
+plot(iris$Petal.Length, iris$Petal.Width, col = iris$Species,  xlab = "Petal Length", ylab = "Petal Width", main = "Width VS Length(original)", pch = 9)
 ```
 
 ## **4. Discussion**
