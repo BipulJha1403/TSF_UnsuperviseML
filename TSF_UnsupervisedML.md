@@ -1,6 +1,6 @@
 ---
 title: "Unsupervised Machine Learning"
-subtitle: "The Spark FOundation"
+subtitle: "The Spark Foundation"
 author: "Bipul"
 output: html_document
 ---
@@ -18,6 +18,20 @@ First we load the **required libraries** and the **iris dataset** required for t
 ```r
 library(datasets)
 library(ggplot2)
+```
+
+```
+## 
+## Attaching package: 'ggplot2'
+```
+
+```
+## The following object is masked _by_ '.GlobalEnv':
+## 
+##     diamonds
+```
+
+```r
 data(iris)
 ```
 
@@ -126,7 +140,7 @@ head(iris_new)
 ## 6   0.30555556   0.7916667   0.11864407  0.12500000
 ```
 
-## **3. CLustering the Dataset**
+## **3. Clustering the Dataset**
 
 This is a dataset in which we know that 3 centers are going to be appropriate for prediction.  
 The R documentation tells us that the **k-means** method **"aims to partition the points into k groups such that the sum of squares from points to the assigned cluster centres is minimized."**  
@@ -145,21 +159,21 @@ result
 ```
 
 ```
-## K-means clustering with 3 clusters of sizes 39, 61, 50
+## K-means clustering with 3 clusters of sizes 61, 39, 50
 ## 
 ## Cluster means:
 ##   Sepal.Length Sepal.Width Petal.Length Petal.Width
-## 1    0.7072650   0.4508547   0.79704476  0.82478632
-## 2    0.4412568   0.3073770   0.57571548  0.54918033
+## 1    0.4412568   0.3073770   0.57571548  0.54918033
+## 2    0.7072650   0.4508547   0.79704476  0.82478632
 ## 3    0.1961111   0.5950000   0.07830508  0.06083333
 ## 
 ## Clustering vector:
-##   [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 1 2 1 2 2 2 2
-##  [58] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 2 1 1 1 1 2 1 1 1 1 1 1 2
-## [115] 1 1 1 1 1 2 1 2 1 2 1 1 2 2 1 1 1 1 1 2 2 1 1 1 2 1 1 1 2 1 1 1 2 1 1 2
+##   [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 1 2 1 1 1 1
+##  [58] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 2 2 2 2 1 2 2 2 2 2 2 1
+## [115] 2 2 2 2 2 1 2 1 2 1 2 2 1 1 2 2 2 2 2 1 1 2 2 2 1 2 2 2 1 2 2 2 1 2 2 1
 ## 
 ## Within cluster sum of squares by cluster:
-## [1] 2.073324 3.079830 1.829062
+## [1] 3.079830 2.073324 1.829062
 ##  (between_SS / total_SS =  83.0 %)
 ## 
 ## Available components:
@@ -191,8 +205,8 @@ table(specie, result$cluster)
 ##             
 ## specie        1  2  3
 ##   setosa      0  0 50
-##   versicolor  3 47  0
-##   virginica  36 14  0
+##   versicolor 47  3  0
+##   virginica  14 36  0
 ```
  
 So the **kmeans** was able to cluster **50 setosa**, **47 versicolor** and **36 virginica** which is fairly good.  Now we will plot these and compare it with the original plot to check if the clustering done is compareable or not.
@@ -204,8 +218,8 @@ result$centers
 
 ```
 ##   Sepal.Length Sepal.Width Petal.Length Petal.Width
-## 1    0.7072650   0.4508547   0.79704476  0.82478632
-## 2    0.4412568   0.3073770   0.57571548  0.54918033
+## 1    0.4412568   0.3073770   0.57571548  0.54918033
+## 2    0.7072650   0.4508547   0.79704476  0.82478632
 ## 3    0.1961111   0.5950000   0.07830508  0.06083333
 ```
 
@@ -214,9 +228,9 @@ result$cluster
 ```
 
 ```
-##   [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 1 2 1 2 2 2 2
-##  [58] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 2 1 1 1 1 2 1 1 1 1 1 1 2
-## [115] 1 1 1 1 1 2 1 2 1 2 1 1 2 2 1 1 1 1 1 2 2 1 1 1 2 1 1 1 2 1 1 1 2 1 1 2
+##   [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 1 2 1 1 1 1
+##  [58] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 2 2 2 2 1 2 2 2 2 2 2 1
+## [115] 2 2 2 2 2 1 2 1 2 1 2 2 1 1 2 2 2 2 2 1 1 2 2 2 1 2 2 2 1 2 2 2 1 2 2 1
 ```
 We make a plot between the **Sepal.Length** and **Sepal.Width** for the **original** as well as the **kmeans clustered** dataset to see if how they compare. 
 
@@ -230,13 +244,13 @@ plot(iris$Sepal.Length, iris$Sepal.Width, col = iris$Species,  xlab = "Sepal Len
 ![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png)
 
 
-We now make a plot for **Sepal.Width** and **Sepal.Length** for the **original** and the **kmeans clustering** dataset to see how they compare.
+We now make a plot for **Petal length** and **Petal Width** for the **original** and the **kmeans clustering** dataset to see how they compare.
 
 
 ```r
 par(mfrow = c(1,2), mar = c(5, 4, 2, 2))
-plot(iris$Sepal.Width, iris$Sepal.Length, col = result$cluster, xlab = "Sepal Width", ylab = "Sepal Length", main = "Width VS Length(K-means)", pch = 3)
-plot(iris$Sepal.Width, iris$Sepal.Length, col = iris$Species,  xlab = "Sepal Width", ylab = "Sepal Length", main = "Width VS Length(original)", pch = 9)
+plot(iris$Petal.Length, iris$Petal.Width , col = result$cluster, xlab = "Petal Length", ylab = "Petal Width", main = "Width VS Length(K-means)", pch = 3)
+plot(iris$Petal.Length, iris$Petal.Width, col = iris$Species,  xlab = "Petal Length", ylab = "Petal Width", main = "Width VS Length(original)", pch = 9)
 ```
 
 ![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png)
